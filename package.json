@@ -1,0 +1,28 @@
+{
+  "name": "vue-splitviews",
+  "version": "1.0.0",
+  "description": "A view component can resized, looks like desktop software, and more than this.",
+  "main": "./src/components/index.js",
+  "keywords": [
+    "vue",
+    "electron",
+    "split",
+    "view",
+    "desktop",
+    "resize"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050"
+  },
+  "dependencies": {
+    "vue": "^3.2.31"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.1"
+  },
+  "author": "batu_z",
+  "license": "MIT"
+}
