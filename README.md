@@ -37,7 +37,7 @@ export default {
 };
 </script>
 ```
-
+[aaa](./dist/index.html)
 ### props
 
 * view_items: view item init params, default `[{name: default}, {name: item}]`
