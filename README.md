@@ -4,9 +4,9 @@
 <template>
   <div class="container">
     <SplitView 
-      :view_items="items
-      :is_horizontal=true
-      :use_percen=true"
+      :view_items="items"
+      :is_horizontal="true"
+      :use_percen="true"
       >
       <template #left> </template>
       <template #right> </template>
