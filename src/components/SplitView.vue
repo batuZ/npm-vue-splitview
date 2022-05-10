@@ -180,7 +180,12 @@ export default {
   width: 100%;
   height: 100%;
   clear: both;
+
   overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .h-item {
