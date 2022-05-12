@@ -2,7 +2,7 @@
   <div class="s-box" ref="s-box">
     <template v-for="(item, index) in view_items" :key="index">
       <div
-        :class="item_class(item)"
+        :class="item_class(item, is_horizontal)"
         :ref="item.name"
         :maximum="item.maximum"
         :minimum="item.minimum"
@@ -14,7 +14,7 @@
           :class="handle_class(item)"
           ref="handle"
           v-if="view_items.length > index + 1"
-        />
+        ></label>
       </div>
     </template>
   </div>
@@ -57,8 +57,8 @@ export default {
   },
   computed: {
     item_class() {
-      return function (item) {
-        let res = this.is_horizontal ? "h-item" : "v-item";
+      return function (item, h) {
+        let res = h ? "h-item" : "v-item";
         res += item.hiden ? " is-hiden" : "";
         return res;
       };
@@ -199,7 +199,7 @@ export default {
 .v-item {
   position: relative;
   width: 100%;
-  background-color: gray;
+  background-color: rgb(40, 151, 176);
 }
 
 .h-item > .handle {
@@ -214,10 +214,12 @@ export default {
   background-color: #fff;
   z-index: 9;
 }
+
 .h-item > .stable {
   width: 2px;
   cursor: auto;
 }
+
 .v-item > .handle {
   position: absolute;
   bottom: 0;
@@ -229,10 +231,12 @@ export default {
   background-color: #fff;
   z-index: 9;
 }
+
 .v-item > .stable {
   cursor: auto;
   height: 2px;
 }
+
 .is-hiden {
   display: none;
 }

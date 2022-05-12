@@ -1,4 +1,4 @@
-import SplitView from "./SplitView.vue";
+import SplitView from "./components/SplitView.vue";
 SplitView.install = function (Vue) {
     Vue.component(SplitView.name, SplitView)
 }
