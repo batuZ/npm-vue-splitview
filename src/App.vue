@@ -1,13 +1,11 @@
 <template>
-  <button @click="test">test</button>
+  <button @click="hide">hide</button>
+  <button @click="show">show</button>
 
   <div class="container">
-    <SplitView>
-      <template #default> </template>
-      <template #item>
-        <SplitView :is_horizontal="false" :view_items="item_names" />
-      </template>
-    </SplitView>
+    <split-view :is_horizontal="true">
+      <SplitView :is_horizontal="false" :view_items="item_names" />
+    </split-view>
   </div>
 </template>
 <script>
@@ -18,24 +16,26 @@ export default {
     return {
       item_names: [
         {
-          name: "left",
+          name: "up",
           size: "60%",
           maximum: "80%",
           minimum: "1%",
-          hiden: false,
+          hiden: true,
           stable: false,
         },
         {
-          name: "right",
+          name: "down",
           size: "40%",
         },
       ],
     };
   },
   methods: {
-    test(e) {
-      this.item_names[0]["hiden"] = !this.item_names[0]["hiden"];
-      console.log(123);
+    hide(e) {
+      this.item_names[0].hide();
+    },
+    show(e) {
+      this.item_names[0].show();
     },
   },
 };
