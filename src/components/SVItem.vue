@@ -31,7 +31,7 @@ export default {
   },
 
   mounted() {
-    let item = this.$refs["item"];
+    let item = this.$refs.item;
     this.is_h = item.parentNode.getAttribute("is_h") === "true";
     this.is_last = item.nextElementSibling === null;
     this.brother_count = item.parentNode.childElementCount;
@@ -60,7 +60,7 @@ export default {
       if (this.is_last) {
         neighbor_view.lastChild.style.display = "none";
       }
-      this.$refs.item.style.display = "none";
+      item_view.style.display = "none";
     },
 
     show() {
@@ -86,7 +86,7 @@ export default {
         if (this.is_last) {
           neighbor_view.lastChild.style.display = "inline";
         }
-        this.$refs.item.style.display = "inline";
+        item_view.style.display = "inline";
       }
     },
   },

@@ -1,13 +1,10 @@
 <template>
-  <div class="s-box" ref="s-box" :is_h="is_horizontal">
+  <div class="s-box" ref="sbox" :is_h="is_horizontal">
     <slot></slot>
   </div>
 </template>
 
 <script>
-// var start = 0;
-// var handle = null;
-
 export default {
   props: {
     is_horizontal: {
@@ -35,7 +32,7 @@ export default {
   },
   mounted() {
     // 绑定事件
-    let box = this.$refs["s-box"];
+    let box = this.$refs.sbox;
     box.onmousemove = this.m_mousemove;
     box.onmouseup = this.m_mouseup;
     box.onmouseleave = this.m_mouseup;
@@ -65,7 +62,7 @@ export default {
         let str_to_num = (str) => {
           let res = Number(str);
           if (res > 0 && res <= 1) {
-            let box = this.$refs["s-box"];
+            let box = this.$refs.sbox;
             let box_value = this.is_horizontal
               ? box.clientWidth
               : box.clientHeight;
