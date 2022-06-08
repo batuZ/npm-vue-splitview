@@ -1,17 +1,27 @@
 <template>
   <button @click="hide">hide</button>
   <button @click="show">show</button>
-
+  <button @click="hide_r" style="margin-left: 25px">hide_right</button>
+  <button @click="show_r">show_right</button>
   <div class="container">
-    <split-view :is_horizontal="true">
-      <SplitView :is_horizontal="false" :view_items="item_names" />
-    </split-view>
+    <SVBox :is_horizontal="true">
+      <SVItem :size="0.2" :stable="true" ref="aItem"> left </SVItem>
+      <SVItem :size="0.4">
+        <SVBox :is_horizontal="false">
+          <SVItem>up</SVItem>
+          <SVItem>down</SVItem>
+        </SVBox>
+      </SVItem>
+      <SVItem :size="0.4" ref="bItem">right</SVItem>
+    </SVBox>
   </div>
 </template>
 <script>
 import SplitView from "./components/SplitView.vue";
+import SVBox from "./components/SVBox.vue";
+import SVItem from "./components/SVItem.vue";
 export default {
-  components: { SplitView },
+  components: { SplitView, SVBox, SVItem },
   data() {
     return {
       item_names: [
@@ -32,10 +42,16 @@ export default {
   },
   methods: {
     hide(e) {
-      this.item_names[0].hide();
+      this.$refs.aItem.hide();
     },
     show(e) {
-      this.item_names[0].show();
+      this.$refs.aItem.show();
+    },
+    hide_r(e) {
+      this.$refs.bItem.hide();
+    },
+    show_r(e) {
+      this.$refs.bItem.show();
     },
   },
 };
