@@ -1,11 +1,5 @@
 <template>
-  <div
-    :class="item_class"
-    :style="item_style"
-    :minimum="minimum"
-    :maximum="maximum"
-    ref="item"
-  >
+  <div :style="item_style" :minimum="minimum" :maximum="maximum" ref="item">
     <slot></slot>
     <label :class="stable ? 'handle stable' : 'handle'" v-if="!is_last" />
   </div>
@@ -91,9 +85,6 @@ export default {
     },
   },
   computed: {
-    item_class() {
-      return this.is_h ? "h-item" : "v-item";
-    },
     item_style() {
       let _size = "";
       if (this.size && this.size > 0) {
@@ -125,7 +116,6 @@ export default {
   height: 100%;
   display: block;
   cursor: ew-resize;
-  background-color: #eee;
   z-index: 9;
 }
 
@@ -149,7 +139,6 @@ export default {
   height: 4px;
   display: block;
   cursor: ns-resize;
-  background-color: #eee;
   z-index: 9;
 }
 

@@ -23,6 +23,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    handle_color: {
+      type: String,
+      default: "#eee",
+    },
+    handle_drag_color: {
+      type: String,
+      default: "#888",
+    },
   },
   data() {
     return {
@@ -37,7 +45,13 @@ export default {
     box.onmouseup = this.m_mouseup;
     box.onmouseleave = this.m_mouseup;
     for (let child of box.children) {
+      if (this.is_horizontal) {
+        child.setAttribute("class", "h-item");
+      } else {
+        child.setAttribute("class", "v-item");
+      }
       child.lastChild.onmousedown = this.m_mousedown;
+      child.lastChild.style.background = this.handle_color;
     }
   },
 
@@ -48,7 +62,7 @@ export default {
         e.target.className.indexOf("stable") == -1
       ) {
         this.handle = e.target;
-        this.handle.style.background = "#888";
+        this.handle.style.background = this.handle_drag_color;
         this.start = this.is_horizontal ? e.pageX : e.pageY;
       }
     },
@@ -104,7 +118,9 @@ export default {
     m_mouseup(e) {
       if (this.handle) {
         // 转为百分比
+
         if (this.use_percen) {
+          // 这个方法偶尔会出现最后一个item稍微大一点点，导致换行
           let box_w = this.handle.parentNode.parentNode.clientWidth;
           let box_h = this.handle.parentNode.parentNode.clientHeight;
 
@@ -123,8 +139,18 @@ export default {
             (next_item_w * 100.0) / box_w + "%";
           this.handle.parentNode.nextElementSibling.style.height =
             (next_item_h * 100.0) / box_h + "%";
+
+          // TODO 尝试保护最后一个item的size,使期不会换行
+          // let box = this.$refs.sbox;
+          // let box_w = box.clientWidth;
+          // let box_h = box.clientHeight;
+          // for (let i = 0; i < box.children.length; i++) {
+          //   let item = box.children.item(i);
+          //   item.style.width = (item.clientWidth * 100.0) / box_w + "%";
+          //   item.style.height = (item.clientHeight * 100.0) / box_h + "%";
+          // }
         }
-        this.handle.style.background = "#fff";
+        this.handle.style.background = this.handle_color;
         this.handle = null;
       }
       this.start = 0;
